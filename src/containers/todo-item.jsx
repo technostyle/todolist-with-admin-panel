@@ -4,6 +4,7 @@ import { toggleCopmleteThunk } from "modules/todos/actions";
 
 export const TodoItem = ({ todoItem, canComplete }) => {
   const { id, userName, email, text, isComplete } = todoItem;
+
   const dispatch = useDispatch();
   const onTogleComplete = () => dispatch(toggleCopmleteThunk(id));
   return (
@@ -16,6 +17,7 @@ export const TodoItem = ({ todoItem, canComplete }) => {
       ) : (
         <div>isComplete: {isComplete}</div>
       )}
+      <br />
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import { createFormData } from "./utils";
+
 const errorHandler = (res) => {
   if (!res.ok) {
     throw res;
@@ -11,23 +13,41 @@ const createQueryUrl = (url, params) => {
     return url;
   }
 
-  let queryUrl = `${url}?`;
-  Object.keys(params).forEach((key) => {
-    const value = Array.isArray(params[key])
-      ? params[key].join(",")
-      : params[key];
-    queryUrl += `${key}=${value}`;
-  });
+  const paramsQuery = Object.keys(params)
+    .map((key) => {
+      const value = Array.isArray(params[key])
+        ? params[key].join(",")
+        : params[key];
+      return `${key}=${value}`;
+    })
+    .join("&");
 
-  return queryUrl;
+  return `${url}?${paramsQuery}`;
 };
 
 class HttpService {
-  get = (url, params) => {
+  get = async (url, params) => {
     const properUrl = params ? createQueryUrl(url, params) : url;
-    return fetch(properUrl)
+    return await fetch(properUrl, {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .catch(errorHandler);
+  };
+
+  post = (url, params) => {
+    return fetch(createQueryUrl(url, { developer: "Danila" }), {
+      method: "POST",
+      body: createFormData(params),
+      // mode: 'cors',
+      // headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+    }).catch(errorHandler);
   };
 }
 

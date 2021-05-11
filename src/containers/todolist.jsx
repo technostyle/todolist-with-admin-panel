@@ -1,13 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getTodos } from "../modules/todos/selectors";
+import { getTodos, getIsTodosLoading } from "modules/todos/selectors";
+
 import { TodoItem } from "./todo-item";
 
 export const TodoList = () => {
   const todos = useSelector(getTodos);
+  const isLoading = useSelector(getIsTodosLoading);
   const canComplete = true;
-  //   const canCopmlete = useSelector(isAdmin);
 
+  if (isLoading) return <div>LOADING...</div>;
   return (
     <div>
       {todos.map((todoItem, idx) => (
