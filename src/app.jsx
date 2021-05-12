@@ -5,21 +5,27 @@ import { fetchTodosThunk } from "modules/todos/actions";
 import { useDispatch } from "react-redux";
 import { ToolBar } from "./containers/toolbar";
 import { Pagination } from "./containers/pagination";
+import { LoginPanel } from "./containers/login-panel";
+import css from "./app.css";
 
 export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => dispatch(fetchTodosThunk()), []);
   return (
-    <div>
-      <h1>todo app </h1>
+    <div className={css.appContainer}>
+      <header className={css.header}>
+        <h1>Todo app </h1>
+        <LoginPanel />
+      </header>
+
       <br />
       <AddTodoForm />
       <br />
-      <ToolBar />
+      <ToolBar className={css.appContainer} />
       <br />
-      <TodoList />
+      <TodoList className={css.appContainer} />
       <br />
-      <Pagination />
+      <Pagination className={css.appContainer} />
     </div>
   );
 };

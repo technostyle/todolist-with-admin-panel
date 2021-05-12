@@ -1,23 +1,33 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleCopmleteThunk } from "modules/todos/actions";
+import css from "./todo-item.css";
+
+const TodoItemTextElement = ({ label, value }) => (
+  <div className={css.todoItemTextElement}>
+    {label}: {value}
+  </div>
+);
 
 export const TodoItem = ({ todoItem, canComplete }) => {
   const { id, userName, email, text, isComplete } = todoItem;
 
   const dispatch = useDispatch();
-  const onTogleComplete = () => dispatch(toggleCopmleteThunk(id));
+  const onToggleComplete = () => dispatch(toggleCopmleteThunk(id));
   return (
-    <div>
-      <div>userName: {userName}</div>
-      <div>eMail: {email}</div>
-      <div>text: {text}</div>
+    <div className={css.todoItemContainer}>
       {canComplete ? (
-        <div onClick={onTogleComplete}>isComplete: {isComplete}</div>
+        <input
+          type="checkbox"
+          checked={isComplete}
+          onChange={onToggleComplete}
+        />
       ) : (
-        <div>isComplete: {isComplete}</div>
+        <div>isComplete: {isComplete?.toString()}</div>
       )}
-      <br />
+      <TodoItemTextElement label={"userName"} value={userName} />
+      <TodoItemTextElement label={"email"} value={email} />
+      <TodoItemTextElement label={"text"} value={text} />
     </div>
   );
 };

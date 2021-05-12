@@ -6,6 +6,7 @@ import {
 } from "../modules/pagination/actions";
 import { getCurrentPage } from "../modules/pagination/selectors";
 import { getIsTodosLoading } from "../modules/todos/selectors";
+import commonCss from "styles/common.css";
 
 export const Pagination = () => {
   const currentPage = useSelector(getCurrentPage);
@@ -16,14 +17,24 @@ export const Pagination = () => {
   const onPageIncrement = () => dispatch(incrementPageThunk());
 
   return (
-    <div>
-      <button disabled={isLoading} onClick={onPageDecrement}>
-        prev
-      </button>
-      <span>{currentPage}</span>
-      <button disabled={isLoading} onClick={onPageIncrement}>
-        next
-      </button>
+    <div className={commonCss.centralizedContainer}>
+      <div>
+        <button
+          className={commonCss.button}
+          disabled={isLoading}
+          onClick={onPageDecrement}
+        >
+          prev
+        </button>
+        <span>{currentPage}</span>
+        <button
+          className={commonCss.button}
+          disabled={isLoading}
+          onClick={onPageIncrement}
+        >
+          next
+        </button>
+      </div>
     </div>
   );
 };

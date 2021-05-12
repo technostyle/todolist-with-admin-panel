@@ -56,17 +56,14 @@ export const updateFetchParamsThunk = (update) => (dispatch, getState) => {
 export const fetchTodosThunk = () => async (dispatch, getState) => {
   dispatch(setTodosLoading(true));
   const params = getFetchParams(getState());
-  console.log({ params });
   const rawResponse = await todoListProvider.fetchTodos(params);
   const { todos, totalTodosCounter } = mapTodoListToClient(rawResponse);
   dispatch(setTodos(todos.map(mapTodoItemToClient)));
-  // console.log({totalTodosCounter, rawResponse})
   dispatch(setTotalTodosCount(totalTodosCounter));
   dispatch(setTodosLoading(false));
 };
 
 export const addTodoThunk = (todoItem) => async (dispatch) => {
-  //   dispatch(addTodo(todoItem));
   await todoListProvider.postTodo(mapTodoItemToServer(todoItem));
   dispatch(fetchTodosThunk());
 };

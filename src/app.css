@@ -1,0 +1,10 @@
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header {
+    position: relative;
+    border: solid 1px;
+}

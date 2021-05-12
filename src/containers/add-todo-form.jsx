@@ -1,6 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addTodoThunk } from "modules/todos/actions";
-import { useDispatch } from "react-redux";
+import { getIsTodosLoading } from "../modules/todos/selectors";
+
+import commonCss from "styles/common.css";
+import css from "./add-todo-form.css";
+
+const FormItem = ({ label, value, onChange, labelId }) => {
+  return (
+    <div className={css.inputElement}>
+      {/* <label className={css.inputElement}> */}
+      <label htmlFor={labelId}>{label}</label>
+      <input id={labelId} value={value} onChange={onChange} />
+      {/* </label> */}
+    </div>
+  );
+};
 
 export const AddTodoForm = () => {
   const [userName, setUserName] = useState("");
@@ -9,6 +24,7 @@ export const AddTodoForm = () => {
 
   const dispatch = useDispatch();
 
+  const isTodolistLoading = useSelector(getIsTodosLoading);
   const onUserNameChange = (event) => setUserName(event.target.value);
   const onEmailChange = (event) => setEmail(event.target.value);
   const onTextChange = (event) => setText(event.target.value);
@@ -27,31 +43,39 @@ export const AddTodoForm = () => {
     setText("");
   };
 
+  const isFormValid = userName && email && text;
+
   return (
-    <div>
-      <div>
-        <label>
-          <span>UserName</span>
-          <input value={userName} onChange={onUserNameChange} />
-        </label>
-      </div>
+    <div className={commonCss.centralizedContainer}>
+      <div className={css.formContainer}>
+        <FormItem
+          labelId={"#user-name-form-item"}
+          label={"userName"}
+          value={userName}
+          onChange={onUserNameChange}
+        />
+        <FormItem
+          labelId={"#email-form-item"}
+          label={"email"}
+          value={email}
+          onChange={onEmailChange}
+        />
+        <FormItem
+          labelId={"#text-form-item"}
+          label={"text"}
+          value={text}
+          onChange={onTextChange}
+        />
 
-      <div>
-        <label>
-          <span>email</span>
-          <input value={email} onChange={onEmailChange} />
-        </label>
-      </div>
-
-      <div>
-        <label>
-          <span>text</span>
-          <input value={text} onChange={onTextChange} />
-        </label>
-      </div>
-
-      <div>
-        <button onClick={onAddTodo}>addTodo</button>
+        <div className={css.addTodoButtonContainer}>
+          <button
+            disabled={!isFormValid || isTodolistLoading}
+            className={css.addTodoButton}
+            onClick={onAddTodo}
+          >
+            addTodo
+          </button>
+        </div>
       </div>
     </div>
   );

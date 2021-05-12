@@ -1,0 +1,17 @@
+.toolBarContainer {
+    display: flex;
+    width: 200px;
+}
+
+.toolBarElement {
+    flex-grow: 1;
+    display: inline-block;
+}
+
+.toolBarElementDescSort::before {
+    content: ' \2191';
+}
+
+.toolBarElementAscSort::before {
+    content: ' \2193';
+}

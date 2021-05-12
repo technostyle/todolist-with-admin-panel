@@ -1,0 +1,13 @@
+.loginPanelContainer {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    box-sizing: border-box;
+}
+
+.loginButton {
+    outline: none;
+    border: solid 1px;
+    background-color: white;
+}

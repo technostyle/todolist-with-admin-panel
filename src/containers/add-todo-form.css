@@ -1,0 +1,23 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+.inputElement {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addTodoButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.addTodoButton {
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px;
+    background-color: white;
+}
