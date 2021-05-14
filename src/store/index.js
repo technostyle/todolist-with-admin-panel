@@ -1,12 +1,13 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { todosReducer } from "modules/todos/reducer";
 import { paginationReducer } from "modules/pagination/reducer";
+import { authReducer } from "modules/auth/reducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   todos: todosReducer,
   pagination: paginationReducer,
-  //   auth: a => a
+  auth: authReducer,
 });
 
 const logger = ({ getState }) => (next) => (action) => {

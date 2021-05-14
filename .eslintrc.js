@@ -16,6 +16,7 @@ module.exports = {
     rules: {
       "prettier/prettier": ["error"],
       "react/prop-types": 0,
+      "no-throw-literal": 0,
     },
   };
   

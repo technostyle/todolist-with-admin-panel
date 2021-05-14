@@ -1,20 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import css from "./login-form.css";
 import commonCss from "styles/common.css";
+import { FormItem } from "../../components/form/form-item";
 
-const FormItem = ({ label, value, onChange, labelId, type }) => {
-  return (
-    <div className={css.inputElement}>
-      <label htmlFor={labelId}>{label}</label>
-      <input id={labelId} value={value} onChange={onChange} type={type} />
-    </div>
-  );
-};
-
-export const LoginForm = ({ onLogin }) => {
+export const LoginForm = ({ isLoading, onLogin, errorMessage }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const loginInputRef = useRef(null);
+  useEffect(() => loginInputRef.current.focus(), []);
 
   const onUserNameChange = (event) => setUserName(event.target.value);
   const onPasswordChange = (event) => setPassword(event.target.value);
@@ -23,8 +17,6 @@ export const LoginForm = ({ onLogin }) => {
       userName,
       password,
     });
-    setUserName("");
-    setPassword("");
   };
 
   const isFormValid = userName && password;
@@ -33,12 +25,15 @@ export const LoginForm = ({ onLogin }) => {
     <div className={commonCss.centralizedContainer}>
       <div className={css.formContainer}>
         <FormItem
+          ref={loginInputRef}
+          disabled={isLoading}
           labelId={"#login-form-user-name-item"}
           label={"userName"}
           value={userName}
           onChange={onUserNameChange}
         />
         <FormItem
+          disabled={isLoading}
           labelId={"#login-form-email-item"}
           label={"password"}
           value={password}
@@ -46,8 +41,9 @@ export const LoginForm = ({ onLogin }) => {
           type={"password"}
         />
 
+        {errorMessage && <div className={css.errorMessage}>{errorMessage}</div>}
         <div className={commonCss.centralizedContainer}>
-          <button disabled={!isFormValid} onClick={loginHandler}>
+          <button disabled={!isFormValid || isLoading} onClick={loginHandler}>
             Login
           </button>
         </div>

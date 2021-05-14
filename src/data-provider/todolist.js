@@ -4,11 +4,10 @@ import { HOST } from "api/constants";
 class TodolistProvider {
   fetchTodos = async (params) => {
     try {
-      const { message } = await httpService.get(HOST, {
+      return await httpService.get(HOST, {
         ...params,
         developer: "Danila",
       });
-      return message;
     } catch (e) {
       console.error(e);
     }
@@ -20,7 +19,7 @@ class TodolistProvider {
     try {
       await httpService.post(`${HOST}create`, todoItem);
     } catch (e) {
-      console.error(e);
+      throw e;
     }
   };
 }

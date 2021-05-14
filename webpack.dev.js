@@ -10,6 +10,10 @@ module.exports = merge(common, {
   devServer: {
     port: 3000,
     contentBase: "./src",
+    stats: "errors-only",
+  },
+  watchOptions: {
+    aggregateTimeout: 1000,
   },
   devtool: "inline-source-map",
   plugins: [

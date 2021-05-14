@@ -6,7 +6,7 @@ class LoginProvider {
     try {
       return await httpService.post(`${HOST}login`, creds);
     } catch (e) {
-      console.error(e);
+      throw e;
     }
   };
 }

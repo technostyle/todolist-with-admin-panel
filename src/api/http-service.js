@@ -1,11 +1,20 @@
 import { createFormData } from "./utils";
 
-const errorHandler = (res) => {
+const errorHandler = async (res) => {
   if (!res.ok) {
     throw res;
   }
 
   return res;
+};
+
+const parseResponse = async (res) => {
+  const parsedRes = await res.json();
+  if (parsedRes?.status === "ok") {
+    return parsedRes.message;
+  } else {
+    throw parsedRes.messagee || parsedRes;
+  }
 };
 
 const createQueryUrl = (url, params) => {
@@ -35,8 +44,11 @@ class HttpService {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
-      .catch(errorHandler);
+      .then(errorHandler)
+      .then(parseResponse)
+      .catch((error) => {
+        throw error;
+      });
   };
 
   post = (url, params) => {
@@ -44,8 +56,11 @@ class HttpService {
       method: "POST",
       body: createFormData(params),
     })
-      .then((res) => res.json())
-      .catch(errorHandler);
+      .then(errorHandler)
+      .then(parseResponse)
+      .catch((error) => {
+        throw error;
+      });
   };
 }
 

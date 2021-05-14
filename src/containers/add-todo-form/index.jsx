@@ -2,18 +2,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodoThunk } from "modules/todos/actions";
 import { getIsTodosLoading } from "modules/todos/selectors";
+import { FormItem } from "../../components/form/form-item";
 
 import commonCss from "styles/common.css";
 import css from "./add-todo-form.css";
-
-const FormItem = ({ label, value, onChange, labelId }) => {
-  return (
-    <div className={css.inputElement}>
-      <label htmlFor={labelId}>{label}</label>
-      <input id={labelId} value={value} onChange={onChange} />
-    </div>
-  );
-};
 
 export const AddTodoForm = () => {
   const [userName, setUserName] = useState("");
@@ -48,13 +40,13 @@ export const AddTodoForm = () => {
       <div className={css.formContainer}>
         <FormItem
           labelId={"#user-name-form-item"}
-          label={"userName"}
+          label={"user name"}
           value={userName}
           onChange={onUserNameChange}
         />
         <FormItem
           labelId={"#email-form-item"}
-          label={"email"}
+          label={"e-mail"}
           value={email}
           onChange={onEmailChange}
         />
@@ -63,6 +55,7 @@ export const AddTodoForm = () => {
           label={"text"}
           value={text}
           onChange={onTextChange}
+          inputElType={"textarea"}
         />
 
         <div className={css.addTodoButtonContainer}>

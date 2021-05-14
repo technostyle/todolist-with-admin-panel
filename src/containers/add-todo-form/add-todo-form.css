@@ -4,10 +4,15 @@
     width: 300px;
 }
 
-.inputElement {
+.inputElementWrapper {
     margin-top: 5px;
     display: flex;
     justify-content: space-between;
+}
+
+.inputElement {
+    resize: none;
+    width: 200px;
 }
 
 .addTodoButtonContainer {
