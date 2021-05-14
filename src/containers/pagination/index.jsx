@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   decrementPageThunk,
   incrementPageThunk,
-} from "../modules/pagination/actions";
-import { getCurrentPage } from "../modules/pagination/selectors";
-import { getIsTodosLoading } from "../modules/todos/selectors";
+} from "modules/pagination/actions";
+import { getCurrentPage } from "modules/pagination/selectors";
+import { getIsTodosLoading } from "modules/todos/selectors";
 import commonCss from "styles/common.css";
 
 export const Pagination = () => {

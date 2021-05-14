@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --open --config webpack.dev.js",
+    "start": "webpack-dev-server --progress --config webpack.dev.js",
     "clear": "rm -rf dist",
     "build": "webpack --config webpack.prod.js",
     "lint": "eslint *.js ./src/**/*{js,jsx} --color --format stylish --fix"
@@ -16,7 +16,7 @@
     "redux": "4.1.0",
     "redux-thunk": "2.3.0",
     "reselect": "4.0.0",
-    "styled-components": "^5.3.0"
+    "styled-components": "5.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.9",

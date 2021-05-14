@@ -6,3 +6,8 @@ export const createFormData = (data) => {
 
   return formData;
 };
+
+export const getUniqueId = () => {
+  let counter = 0;
+  return () => `id-${counter++}`;
+};

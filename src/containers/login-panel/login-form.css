@@ -1,0 +1,13 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.inputElement {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}

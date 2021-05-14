@@ -8,3 +8,16 @@
     position: relative;
     border: solid 1px;
 }
+
+button:global {
+    margin-top: 10px;
+    outline: none;
+    border: solid 1px;
+    background-color: white;
+}
+
+button:disabled:global {
+    background-color: white;
+    color: gray;
+    border: solid 1px gray;
+}

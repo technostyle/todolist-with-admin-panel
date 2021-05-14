@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodoThunk } from "modules/todos/actions";
-import { getIsTodosLoading } from "../modules/todos/selectors";
+import { getIsTodosLoading } from "modules/todos/selectors";
 
 import commonCss from "styles/common.css";
 import css from "./add-todo-form.css";
@@ -9,10 +9,8 @@ import css from "./add-todo-form.css";
 const FormItem = ({ label, value, onChange, labelId }) => {
   return (
     <div className={css.inputElement}>
-      {/* <label className={css.inputElement}> */}
       <label htmlFor={labelId}>{label}</label>
       <input id={labelId} value={value} onChange={onChange} />
-      {/* </label> */}
     </div>
   );
 };
@@ -70,10 +68,9 @@ export const AddTodoForm = () => {
         <div className={css.addTodoButtonContainer}>
           <button
             disabled={!isFormValid || isTodolistLoading}
-            className={css.addTodoButton}
             onClick={onAddTodo}
           >
-            addTodo
+            Add todo
           </button>
         </div>
       </div>
