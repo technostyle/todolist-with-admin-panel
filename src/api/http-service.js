@@ -43,11 +43,9 @@ class HttpService {
     return fetch(createQueryUrl(url, { developer: "Danila" }), {
       method: "POST",
       body: createFormData(params),
-      // mode: 'cors',
-      // headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-    }).catch(errorHandler);
+    })
+      .then((res) => res.json())
+      .catch(errorHandler);
   };
 }
 

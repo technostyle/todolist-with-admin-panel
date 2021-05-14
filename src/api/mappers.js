@@ -23,3 +23,8 @@ export const mapTodoItemToServer = (todoItem) => ({
   text: todoItem?.text,
   status: todoItem?.isComplete ? 1 : 0,
 });
+
+export const mapAuthCredsToServer = (creds) => ({
+  username: creds?.userName,
+  password: creds?.password,
+});

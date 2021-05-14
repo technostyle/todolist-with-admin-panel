@@ -12,16 +12,19 @@ const FormItem = ({ label, value, onChange, labelId, type }) => {
   );
 };
 
-export const LoginForm = ({ login }) => {
+export const LoginForm = ({ onLogin }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   const onUserNameChange = (event) => setUserName(event.target.value);
   const onPasswordChange = (event) => setPassword(event.target.value);
-  const onLogin = () => {
+  const loginHandler = () => {
+    onLogin({
+      userName,
+      password,
+    });
     setUserName("");
     setPassword("");
-    login();
   };
 
   const isFormValid = userName && password;
@@ -44,10 +47,7 @@ export const LoginForm = ({ login }) => {
         />
 
         <div className={commonCss.centralizedContainer}>
-          <button
-            disabled={!isFormValid}
-            onClick={onLogin}
-          >
+          <button disabled={!isFormValid} onClick={loginHandler}>
             Login
           </button>
         </div>

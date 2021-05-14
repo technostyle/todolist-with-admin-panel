@@ -10,7 +10,7 @@ export const LoginPanel = () => {
   const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
   const isLoggedIn = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
-  const handler = () => dispatch(isLoggedIn ? logoutThunk : loginThunk);
+  const onLogin = (creds) => dispatch(loginThunk(creds));
   const buttonText = isLoggedIn ? "Logout" : "Login";
   return (
     <div className={css.loginPanelContainer}>
@@ -22,7 +22,7 @@ export const LoginPanel = () => {
           isOpen={isLoginFormOpen}
           onClose={() => setIsLoginFormOpen(false)}
         >
-          <LoginForm />
+          <LoginForm onLogin={onLogin} />
         </Modal>
       }
     </div>
