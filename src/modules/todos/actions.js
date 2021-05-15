@@ -1,4 +1,4 @@
-import { todoListProvider } from "data-provider/todolist";
+import { todoListProviderFabric } from "data-provider/todolist";
 import {
   mapTodoListToClient,
   mapTodoItemToClient,
@@ -58,6 +58,7 @@ export const updateFetchParamsThunk = (update) => (dispatch, getState) => {
 export const fetchTodosThunk = () => async (dispatch, getState) => {
   dispatch(setTodosLoading(true));
   const params = getFetchParams(getState());
+  const todoListProvider = todoListProviderFabric(dispatch, getState);
   const rawResponse = await todoListProvider.fetchTodos(params);
   const { todos, totalTodosCounter } = mapTodoListToClient(rawResponse);
   dispatch(setTodos(todos.map(mapTodoItemToClient)));
@@ -65,7 +66,8 @@ export const fetchTodosThunk = () => async (dispatch, getState) => {
   dispatch(setTodosLoading(false));
 };
 
-export const addTodoThunk = (todoItem) => async (dispatch) => {
+export const addTodoThunk = (todoItem) => async (dispatch, getState) => {
+  const todoListProvider = todoListProviderFabric(dispatch, getState);
   await todoListProvider.postTodo(
     mapTodoItemToServer(filterEmptyValues(todoItem))
   );
@@ -84,6 +86,7 @@ export const updateTodoThunk = ({ id, text, isComplete }) => async (
   // dispatch(updateTodo({ id, text, status }));
   const token = getAuthToken(getState());
   try {
+    const todoListProvider = todoListProviderFabric(dispatch, getState);
     await todoListProvider.editTodo(token, { id, text, isComplete });
   } catch (e) {
     console.error(e);

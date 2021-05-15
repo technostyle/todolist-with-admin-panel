@@ -12,8 +12,8 @@ import css from "./app.css";
 export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchTodosThunk());
     dispatch(authentificate());
+    dispatch(fetchTodosThunk());
   }, []);
   return (
     <div className={css.appContainer}>

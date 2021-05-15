@@ -1,9 +1,8 @@
 import { httpService } from "api/http-service";
-import { HOST } from "api/constants";
 import { getBackendHost } from "../modules/auth/selectors";
 import { memoize } from "../utils";
 
-class LoginProvider {
+class DataProvider {
   store = {};
   host = "";
   constructor(dispatch, getState) {
@@ -21,6 +20,6 @@ class LoginProvider {
   };
 }
 
-export const loginProviderFabric = memoize(
-  (dispatch, getState) => new LoginProvider(dispatch, getState)
+export const dataProviderFabric = memoize(
+  (dispatch, getState) => new DataProvider(dispatch, getState)
 );
