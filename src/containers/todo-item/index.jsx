@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleCopmleteThunk } from "modules/todos/actions";
+import { toggleCopmleteThunk, updateTodoThunk } from "modules/todos/actions";
 import css from "./todo-item.css";
 
 const TodoItemTextElement = ({ label, value }) => (
@@ -13,7 +13,9 @@ export const TodoItem = ({ todoItem, canComplete }) => {
   const { id, userName, email, text, isComplete } = todoItem;
 
   const dispatch = useDispatch();
-  const onToggleComplete = () => dispatch(toggleCopmleteThunk(id));
+  const onToggleComplete = () => {
+    dispatch(updateTodoThunk({ id, isComplete: !isComplete }));
+  };
   return (
     <div className={css.todoItemContainer}>
       {canComplete ? (

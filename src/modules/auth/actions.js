@@ -58,5 +58,5 @@ export const logoutThunk = () => (dispatch) => {
 
 export const authentificate = () => (dispatch) => {
   const token = getSessionStorageToken();
-  if (token) return console.log({ token }) || dispatch(login(token));
+  if (token) dispatch(login(token));
 };

@@ -1,5 +1,9 @@
 import { createFormData } from "./utils";
 
+const defaultQueryParams = {
+  developer: "Gena",
+};
+
 const errorHandler = async (res) => {
   if (!res.ok) {
     throw res;
@@ -52,9 +56,10 @@ class HttpService {
   };
 
   post = (url, params) => {
-    return fetch(createQueryUrl(url, { developer: "Danila" }), {
+    return fetch(createQueryUrl(url, defaultQueryParams), {
       method: "POST",
       body: createFormData(params),
+      mode: "cors",
     })
       .then(errorHandler)
       .then(parseResponse)

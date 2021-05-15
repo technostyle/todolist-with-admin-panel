@@ -5,6 +5,8 @@ import {
   mapTodoItemToServer,
 } from "api/mappers";
 import { getFetchParams } from "modules/todos/selectors";
+import { getAuthToken } from "../auth/selectors";
+import { filterEmptyValues } from "../../utils";
 export const SET_TODOS = "SET_TODOS";
 export const SET_TODOS_LOADING = "SET_TODOS_LOADING";
 export const SET_TOTAL_TODOS_COUNT = "SET_TOTAL_TODOS_COUNT";
@@ -64,10 +66,28 @@ export const fetchTodosThunk = () => async (dispatch, getState) => {
 };
 
 export const addTodoThunk = (todoItem) => async (dispatch) => {
-  await todoListProvider.postTodo(mapTodoItemToServer(todoItem));
+  await todoListProvider.postTodo(
+    mapTodoItemToServer(filterEmptyValues(todoItem))
+  );
   dispatch(fetchTodosThunk());
 };
 
 export const toggleCopmleteThunk = (id) => (dispatch) => {
   dispatch(toggleComplete(id));
+};
+
+export const updateTodoThunk = ({ id, text, isComplete }) => async (
+  dispatch,
+  getState
+) => {
+  dispatch(setTodosLoading(true));
+  // dispatch(updateTodo({ id, text, status }));
+  const token = getAuthToken(getState());
+  try {
+    await todoListProvider.editTodo(token, { id, text, isComplete });
+  } catch (e) {
+    console.error(e);
+  }
+  dispatch(fetchTodosThunk());
+  dispatch(setTodosLoading(false));
 };
