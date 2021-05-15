@@ -51,7 +51,7 @@ export const loginThunk = (creds) => async (dispatch, getState) => {
       throw { toString: () => "Ошибка при получении токена" };
     }
     setSessionTokenToStorage(token);
-    dispatch(setLoginStatus({ isLoggedIn: true, errorMessage: "" }));
+    dispatch(setLoginStatus({ isLoggedIn: true, errorMessage: "", token }));
   } catch (e) {
     setSessionTokenToStorage(null);
     dispatch(

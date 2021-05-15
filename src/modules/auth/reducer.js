@@ -31,6 +31,7 @@ export const authReducer = (state = initialState, { type, payload }) => {
         ...state,
         loginErrorMessage: payload.errorMessage,
         isLoggedIn: payload.isLoggedIn,
+        token: payload.token || null,
       };
     case SET_IS_LOADING:
       return {
