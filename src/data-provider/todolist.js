@@ -1,7 +1,6 @@
 import { httpService } from "api/http-service";
-import { HOST } from "api/constants";
 import { filterEmptyValues, memoize } from "../utils";
-import { getBackendHost, getDeveloperName } from "../modules/auth/selectors";
+import { DataProvider } from "./data-provider";
 
 const getUpdateTodoStatus = (text, isComplete) => {
   return `${typeof isComplete === "boolean" ? "1" : ""}${
@@ -9,21 +8,15 @@ const getUpdateTodoStatus = (text, isComplete) => {
   }`;
 };
 
-class TodolistProvider {
-  store = {};
-  host = "";
-  developerName = "";
+class TodolistProvider extends DataProvider {
   constructor(dispatch, getState) {
-    console.log("TodolistProvider constructor invoked", { dispatch, getState });
-    this.store = { dispatch, getState };
-    this.host = getBackendHost(getState());
-    this.developerName = getDeveloperName(getState());
-    console.log(this.developerName);
+    super(dispatch, getState, "TodolistProvider");
+    console.log(this.host);
   }
 
   fetchTodos = async (params) => {
     try {
-      return await httpService.get(HOST, {
+      return await httpService.get(this.host, {
         ...params,
         developer: this.developerName,
       });
@@ -36,14 +29,13 @@ class TodolistProvider {
 
   postTodo = async (todoItem) => {
     try {
-      await httpService.post(`${HOST}create`, todoItem);
+      await httpService.post(`${this.host}create`, todoItem);
     } catch (e) {
       throw e;
     }
   };
 
   editTodo = async (token, { id, text, isComplete }) => {
-    // console.log("editTodo", { id, token, isComplete });
     if (!token) {
       throw new Error("no token provided");
     }
@@ -55,7 +47,7 @@ class TodolistProvider {
     }
     try {
       await httpService.post(
-        `${HOST}edit/:${id}`,
+        `${this.host}edit/:${id}`,
         filterEmptyValues({
           text,
           status: getUpdateTodoStatus(text, isComplete),

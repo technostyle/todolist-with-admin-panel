@@ -1,25 +1,13 @@
-import { httpService } from "api/http-service";
-import { getBackendHost } from "../modules/auth/selectors";
-import { memoize } from "../utils";
+import { getBackendHost, getDeveloperName } from "../modules/auth/selectors";
 
-class DataProvider {
+export class DataProvider {
   store = {};
   host = "";
-  constructor(dispatch, getState) {
-    console.log("constructor invoked", { dispatch, getState });
+  developerName = "";
+  constructor(dispatch, getState, className) {
+    console.log(`${className} constructor invoked`, { dispatch, getState });
     this.store = { dispatch, getState };
     this.host = getBackendHost(getState());
+    this.developerName = getDeveloperName(getState());
   }
-
-  postCreds = async (creds) => {
-    try {
-      return await httpService.post(`${this.host}login`, creds);
-    } catch (e) {
-      throw e;
-    }
-  };
 }
-
-export const dataProviderFabric = memoize(
-  (dispatch, getState) => new DataProvider(dispatch, getState)
-);

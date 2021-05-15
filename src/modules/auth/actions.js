@@ -1,4 +1,4 @@
-import { loginProvider, loginProviderFabric } from "data-provider/login";
+import { loginProviderFabric } from "data-provider/login";
 import { mapAuthCredsToServer } from "../../api/mappers";
 import { getSessionStorageToken, setSessionTokenToStorage } from "../../utils";
 export const SET_DEVELOPER_NAME = "SET_DEVELOPER_NAME";

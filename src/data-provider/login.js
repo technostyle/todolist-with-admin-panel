@@ -1,15 +1,10 @@
 import { httpService } from "api/http-service";
-import { HOST } from "api/constants";
-import { getBackendHost } from "../modules/auth/selectors";
 import { memoize } from "../utils";
+import { DataProvider } from "./data-provider";
 
-class LoginProvider {
-  store = {};
-  host = "";
+class LoginProvider extends DataProvider {
   constructor(dispatch, getState) {
-    console.log("constructor invoked", { dispatch, getState });
-    this.store = { dispatch, getState };
-    this.host = getBackendHost(getState());
+    super(dispatch, getState, "LoginProvider");
   }
 
   postCreds = async (creds) => {
