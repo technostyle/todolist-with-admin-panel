@@ -32,3 +32,17 @@ export const memoize = (foo) => {
     return prevResult;
   };
 };
+
+// const getUniqueIdFabric = () => {
+//   const counters = { common: 0 };
+//   return (prefix ='common') => {
+//     if {counters[prefix]} return counters.prefix++
+//   };
+// };
+//
+// export const getUniqueId = getUniqueIdFabric();
+
+export const getUniqueId = (() => {
+  let counter = 0;
+  return () => counter++;
+})();

@@ -8,6 +8,7 @@ import { ToolBar } from "./containers/toolbar";
 import { Pagination } from "./containers/pagination";
 import { LoginPanel } from "./containers/login-panel";
 import css from "./app.css";
+import { NotificationContainer } from "./components/notification";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -16,20 +17,23 @@ export const App = () => {
     dispatch(fetchTodosThunk());
   }, []);
   return (
-    <div className={css.appContainer}>
-      <header className={css.header}>
-        <h1>Todo app </h1>
-        <LoginPanel />
-      </header>
+    <>
+      <div className={css.appContainer}>
+        <NotificationContainer />
+        <header className={css.header}>
+          <h1>Todo app </h1>
+          <LoginPanel />
+        </header>
 
-      <br />
-      <AddTodoForm />
-      <br />
-      <ToolBar className={css.appContainer} />
-      <br />
-      <TodoList className={css.appContainer} />
-      <br />
-      <Pagination className={css.appContainer} />
-    </div>
+        <br />
+        <AddTodoForm />
+        <br />
+        <ToolBar className={css.appContainer} />
+        <br />
+        <TodoList className={css.appContainer} />
+        <br />
+        <Pagination className={css.appContainer} />
+      </div>
+    </>
   );
 };

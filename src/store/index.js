@@ -1,13 +1,15 @@
+import thunk from "redux-thunk";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { todosReducer } from "modules/todos/reducer";
 import { paginationReducer } from "modules/pagination/reducer";
 import { authReducer } from "modules/auth/reducer";
-import thunk from "redux-thunk";
+import { uiReducer } from "modules/ui/reducer";
 
 const rootReducer = combineReducers({
+  auth: authReducer,
   todos: todosReducer,
   pagination: paginationReducer,
-  auth: authReducer,
+  ui: uiReducer,
 });
 
 const logger = ({ getState }) => (next) => (action) => {

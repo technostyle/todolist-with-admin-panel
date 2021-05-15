@@ -2,7 +2,7 @@ import {
   LOGIN,
   LOGOUT,
   SET_LOGIN_STATUS,
-  SET_IS_LOADING,
+  SET_IS_AUTH_LOADING,
   SET_DEVELOPER_NAME,
   SET_BACKEND_HOST,
 } from "./actions";
@@ -33,7 +33,8 @@ export const authReducer = (state = initialState, { type, payload }) => {
         isLoggedIn: payload.isLoggedIn,
         token: payload.token || null,
       };
-    case SET_IS_LOADING:
+    case SET_IS_AUTH_LOADING:
+      console.warn("SET_IS_AUTH_LOADING", { state });
       return {
         ...state,
         isLoading: payload,

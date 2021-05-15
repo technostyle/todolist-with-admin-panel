@@ -7,7 +7,7 @@ import {
   SET_FETCH_PARAMS,
 } from "./actions";
 
-const intialState = {
+const initialState = {
   todos: [],
   isLoading: false,
   totalTodosCount: 0,
@@ -16,7 +16,7 @@ const intialState = {
   sortField: null,
 };
 
-export const todosReducer = (state = intialState, { type, payload }) => {
+export const todosReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_TODOS:
       return setTodosReducer(state, payload);

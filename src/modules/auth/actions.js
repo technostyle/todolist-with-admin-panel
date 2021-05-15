@@ -4,12 +4,14 @@ import {
   getSessionStorageToken,
   setSessionTokenToStorage,
 } from "services/local-storage";
+import { addNotificationThunk } from "../ui/actions";
+import { getUniqueId } from "../../utils";
 export const SET_DEVELOPER_NAME = "SET_DEVELOPER_NAME";
 export const SET_BACKEND_HOST = "SET_BACKEND_HOST";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const SET_LOGIN_STATUS = "SET_LOGIN_STATUS";
-export const SET_IS_LOADING = "SET_IS_LOADING";
+export const SET_IS_AUTH_LOADING = "SET_IS_AUTH_LOADING";
 
 export const setDeveloperName = (name) => ({
   type: SET_DEVELOPER_NAME,
@@ -36,7 +38,7 @@ const setLoginStatus = (status) => ({
 });
 
 const setIsLoading = (isLoading) => ({
-  type: SET_IS_LOADING,
+  type: SET_IS_AUTH_LOADING,
   payload: isLoading,
 });
 
@@ -52,6 +54,13 @@ export const loginThunk = (creds) => async (dispatch, getState) => {
     }
     setSessionTokenToStorage(token);
     dispatch(setLoginStatus({ isLoggedIn: true, errorMessage: "", token }));
+    dispatch(
+      addNotificationThunk({
+        text: "Successfull login",
+        type: "info",
+        id: getUniqueId(),
+      })
+    );
   } catch (e) {
     setSessionTokenToStorage(null);
     dispatch(
@@ -70,11 +79,17 @@ export const logoutThunk = () => (dispatch) => {
   setSessionTokenToStorage(null);
   dispatch(logout());
   dispatch(setIsLoading(false));
+  dispatch(
+    addNotificationThunk({
+      text: "Successfully logged out",
+      type: "info",
+    })
+  );
 };
 
 // TODO: rename initialize?
 export const authentificate = () => (dispatch) => {
-  dispatch(setDeveloperName("danila"));
+  dispatch(setDeveloperName("gena"));
   dispatch(
     setBackendHost(`https://uxcandy.com/~shapoval/test-task-backend/v2/`)
   );

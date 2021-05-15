@@ -6,7 +6,7 @@
     "start": "webpack-dev-server --progress --config webpack.dev.js",
     "clear": "rm -rf dist",
     "build": "webpack --config webpack.prod.js",
-    "lint": "eslint *.js ./src/**/*{js,jsx} --color --format stylish --fix"
+    "lint": "eslint *.js ./src/**/*{js,jsx} --fix"
   },
   "dependencies": {
     "react": "17.0.0",
