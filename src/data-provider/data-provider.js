@@ -7,7 +7,10 @@ export class DataProvider extends HttpService {
   developerName = "";
   httpService = {};
   constructor(dispatch, getState, className) {
-    console.info(`${className} constructor invoked`, { dispatch, getState });
+    console.info(
+      `%c${className} constructor invoked`,
+      "font-style: bold; color: green"
+    );
     super();
     this.httpService.get = this.get;
     this.httpService.post = this.post;
