@@ -1,4 +1,3 @@
-import { httpService } from "api/http-service";
 import { filterEmptyValues, memoize } from "../utils";
 import { DataProvider } from "./data-provider";
 
@@ -11,12 +10,11 @@ const getUpdateTodoStatus = (text, isComplete) => {
 class TodolistProvider extends DataProvider {
   constructor(dispatch, getState) {
     super(dispatch, getState, "TodolistProvider");
-    console.log(this.host);
   }
 
   fetchTodos = async (params) => {
     try {
-      return await httpService.get(this.host, {
+      return await this.httpService.get(this.host, {
         ...params,
         developer: this.developerName,
       });
@@ -29,7 +27,7 @@ class TodolistProvider extends DataProvider {
 
   postTodo = async (todoItem) => {
     try {
-      await httpService.post(`${this.host}create`, todoItem);
+      await this.httpService.post(`${this.host}create`, todoItem);
     } catch (e) {
       throw e;
     }
@@ -46,7 +44,7 @@ class TodolistProvider extends DataProvider {
       throw new Error("nothin to update");
     }
     try {
-      await httpService.post(
+      await this.httpService.post(
         `${this.host}edit/:${id}`,
         filterEmptyValues({
           text,

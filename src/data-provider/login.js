@@ -1,15 +1,18 @@
-import { httpService } from "api/http-service";
 import { memoize } from "../utils";
 import { DataProvider } from "./data-provider";
 
+const noop = () => {};
 class LoginProvider extends DataProvider {
+  get = noop;
+  post = noop;
   constructor(dispatch, getState) {
     super(dispatch, getState, "LoginProvider");
+    console.log(this.get);
   }
 
   postCreds = async (creds) => {
     try {
-      return await httpService.post(`${this.host}login`, creds);
+      return await this.httpService.post(`${this.host}login`, creds);
     } catch (e) {
       throw e;
     }

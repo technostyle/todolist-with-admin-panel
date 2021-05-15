@@ -1,6 +1,9 @@
 import { loginProviderFabric } from "data-provider/login";
 import { mapAuthCredsToServer } from "../../api/mappers";
-import { getSessionStorageToken, setSessionTokenToStorage } from "../../utils";
+import {
+  getSessionStorageToken,
+  setSessionTokenToStorage,
+} from "services/local-storage";
 export const SET_DEVELOPER_NAME = "SET_DEVELOPER_NAME";
 export const SET_BACKEND_HOST = "SET_BACKEND_HOST";
 export const LOGIN = "LOGIN";
