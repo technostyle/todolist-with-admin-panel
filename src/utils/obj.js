@@ -15,3 +15,20 @@ export const filterEmptyValues = (obj) => {
 
 // TODO: support array or dotted string?
 export const prop = (key) => (obj) => (obj && obj?.[key]) || undefined;
+// export const equals = (param) => (to) => to === param;
+
+// TODO: make common?
+export const memoize = (foo) => {
+  let prevParams = [];
+  let prevResult = null;
+
+  return (...curParams) => {
+    if (curParams.every((param, idx) => param === prevParams[idx])) {
+      return prevResult;
+    }
+
+    prevParams = curParams;
+    prevResult = foo(...curParams);
+    return prevResult;
+  };
+};

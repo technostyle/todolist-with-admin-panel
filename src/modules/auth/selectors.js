@@ -3,6 +3,13 @@ import { prop } from "utils";
 
 const authSelector = (state) => state.auth;
 
+export const getDeveloperName = createSelector(
+  authSelector,
+  prop("developerName")
+);
+
+export const getBackendHost = createSelector(authSelector, prop("backendHost"));
+
 export const getIsLoggedIn = createSelector(
   authSelector,
   (auth) => auth?.isLoggedIn

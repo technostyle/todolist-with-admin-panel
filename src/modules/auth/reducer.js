@@ -1,5 +1,14 @@
-import { LOGIN, LOGOUT, SET_LOGIN_STATUS, SET_IS_LOADING } from "./actions";
+import {
+  LOGIN,
+  LOGOUT,
+  SET_LOGIN_STATUS,
+  SET_IS_LOADING,
+  SET_DEVELOPER_NAME,
+  SET_BACKEND_HOST,
+} from "./actions";
 const initialState = {
+  developerName: "",
+  backendHost: "",
   isLoading: false,
   isLoggedIn: false,
   loginErrorMessage: "",
@@ -9,6 +18,10 @@ const initialState = {
 // TODO: desturcture action
 export const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case SET_DEVELOPER_NAME:
+      return { ...state, developerName: payload };
+    case SET_BACKEND_HOST:
+      return { ...state, backendHost: payload };
     case LOGIN:
       return { ...state, isLoggedIn: true, token: payload };
     case LOGOUT:
