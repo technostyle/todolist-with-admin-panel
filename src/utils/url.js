@@ -1,3 +1,5 @@
+import { getObjValues } from "./obj";
+
 export const createFormData = (data) => {
   const formData = new FormData();
   for (const key in data) {
@@ -6,3 +8,5 @@ export const createFormData = (data) => {
 
   return formData;
 };
+
+export const formatErrorMessageObj = (obj) => getObjValues(obj).join(", ");

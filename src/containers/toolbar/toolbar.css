@@ -6,6 +6,7 @@
 .toolBarElement {
     flex-grow: 1;
     display: inline-block;
+    cursor: pointer;
 }
 
 .toolBarElementDescSort::before {

@@ -1,5 +1,5 @@
 .notificationsContainer {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 20%;
@@ -54,7 +54,7 @@
 }
 
 .animation {
-    animation-duration: 5.1s;
+    animation-duration: 5s;
     animation-name: fadeInOut;
     animation-timing-function: linear;
 }

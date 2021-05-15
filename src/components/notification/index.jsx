@@ -9,7 +9,7 @@ const notificationTypeClassNameMap = {
   failure: css.notificationFailure,
 };
 
-const Notification = ({ type, text }) => {
+const Notification = ({ title, type, text }) => {
   return (
     <div
       className={`
@@ -28,8 +28,8 @@ export const NotificationContainer = () => {
 
   return (
     <div className={css.notificationsContainer}>
-      {notifications.map(({ id, text, type }) => (
-        <Notification key={id} text={text} type={type} />
+      {notifications.map(({ id, text, type, title }) => (
+        <Notification key={id} text={text} type={type} title={title} />
       ))}
     </div>
   );

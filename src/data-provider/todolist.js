@@ -20,9 +20,8 @@ class TodolistProvider extends DataProvider {
       });
     } catch (e) {
       console.error(e);
+      throw e;
     }
-
-    return [];
   };
 
   postTodo = async (todoItem) => {
@@ -41,7 +40,7 @@ class TodolistProvider extends DataProvider {
       throw new Error("no id provided");
     }
     if (typeof text !== "string" && typeof isComplete !== "boolean") {
-      throw new Error("nothin to update");
+      throw new Error("nothing to update");
     }
     try {
       await this.httpService.post(

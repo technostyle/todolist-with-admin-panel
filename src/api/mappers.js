@@ -1,3 +1,5 @@
+import { filterEmptyValues } from "../utils";
+
 const mapTotalTodosCounter = (todoList) => {
   if (todoList?.total_task_count) return Number(todoList?.total_task_count);
   return todoList?.tasks?.length || 0;
@@ -28,3 +30,10 @@ export const mapAuthCredsToServer = (creds) => ({
   username: creds?.userName,
   password: creds?.password,
 });
+
+export const mapSortParamsToServer = (params) =>
+  filterEmptyValues({
+    sort_field: params?.sortField,
+    sort_direction: params?.sortDirection,
+    page: params?.page,
+  });

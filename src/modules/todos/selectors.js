@@ -22,3 +22,8 @@ export const getFetchParams = createSelector(
   ({ page, sortDirection, sortField }) =>
     filterEmptyValues({ page, sortDirection, sortField })
 );
+
+export const getFetchSortParams = createSelector(
+  getFetchParams,
+  ({ sortDirection, sortField }) => ({ sortDirection, sortField })
+);

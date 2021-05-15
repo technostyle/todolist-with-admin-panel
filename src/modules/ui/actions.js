@@ -13,11 +13,14 @@ const removeNotification = (id) => ({
   payload: id,
 });
 
-export const addNotificationThunk = ({ text, type, duration = 5000 }) => (
-  dispatch
-) => {
+export const addNotificationThunk = ({
+  text,
+  type,
+  title,
+  duration = 5000,
+}) => (dispatch) => {
   const id = getUniqueId();
-  dispatch(addNotification({ id, text, type }));
+  dispatch(addNotification({ id, text, type, title }));
   const timeout = setTimeout(() => {
     dispatch(removeNotification(id));
     clearTimeout(timeout);

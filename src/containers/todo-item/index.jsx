@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleCopmleteThunk, updateTodoThunk } from "modules/todos/actions";
+import { updateTodoThunk } from "modules/todos/actions";
 import css from "./todo-item.css";
 
 const TodoItemTextElement = ({ label, value }) => (

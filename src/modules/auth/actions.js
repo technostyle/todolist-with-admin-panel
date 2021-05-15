@@ -56,8 +56,8 @@ export const loginThunk = (creds) => async (dispatch, getState) => {
     dispatch(setLoginStatus({ isLoggedIn: true, errorMessage: "", token }));
     dispatch(
       addNotificationThunk({
-        text: "Successfull login",
-        type: "info",
+        text: "Successfully logged in",
+        type: "success",
         id: getUniqueId(),
       })
     );
@@ -81,7 +81,7 @@ export const logoutThunk = () => (dispatch) => {
   dispatch(setIsLoading(false));
   dispatch(
     addNotificationThunk({
-      text: "Successfully logged out",
+      text: "Logged out",
       type: "info",
     })
   );

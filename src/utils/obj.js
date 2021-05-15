@@ -46,3 +46,6 @@ export const getUniqueId = (() => {
   let counter = 0;
   return () => counter++;
 })();
+
+export const getObjValues = (obj) =>
+  typeof obj === "object" ? Object.keys(obj).map((key) => obj[key]) : [];
