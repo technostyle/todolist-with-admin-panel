@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getIsTodosLoading } from "modules/todos/selectors";
-import { FormItem } from "../../components/form/form-item";
+import { FormItem } from "components/form/form-item";
 
 import commonCss from "styles/common.css";
-import css from "./add-todo-form.css";
+import css from "./handle-todo-form.css";
 
 export const AddTodoForm = ({ onSubmit, initialValues, editMode }) => {
-  console.log({ editMode, initialValues });
   const { text: initialText, email: initialEmail, userName: initialUserName } =
     initialValues || {};
   const [userName, setUserName] = useState(initialUserName || "");

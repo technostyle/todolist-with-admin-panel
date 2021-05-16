@@ -96,3 +96,12 @@ export const authentificate = () => (dispatch) => {
   const token = getSessionStorageToken();
   if (token) dispatch(login(token));
 };
+
+export const onEscapeAfterFailureLoginThunk = () => (dispatch) => {
+  dispatch(
+    setLoginStatus({
+      isLoggedIn: false,
+      errorMessage: "",
+    })
+  );
+};

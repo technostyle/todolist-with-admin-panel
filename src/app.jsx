@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { AddTodoForm } from "./containers/add-todo-form";
+import { AddTodoForm } from "./containers/handle-todo-form";
 import { TodoList } from "./containers/todolist";
 import { fetchTodosThunk } from "modules/todos/actions";
 import { authentificate } from "modules/auth/actions";

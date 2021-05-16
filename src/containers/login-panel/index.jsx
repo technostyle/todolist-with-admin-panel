@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginThunk, logoutThunk } from "modules/auth/actions";
+import {
+  loginThunk,
+  logoutThunk,
+  onEscapeAfterFailureLoginThunk,
+} from "modules/auth/actions";
 import {
   getIsAuthLoading,
   getIsLoggedIn,
@@ -36,6 +40,7 @@ export const LoginPanel = () => {
           isOpen={isLoginFormOpen}
           onClose={() => {
             setIsLoginFormOpen(false);
+            dispatch(onEscapeAfterFailureLoginThunk());
           }}
         >
           <LoginForm

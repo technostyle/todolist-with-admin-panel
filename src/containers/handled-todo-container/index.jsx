@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Modal } from "../../components/modal";
-import { AddTodoForm } from "../add-todo-form";
+import { AddTodoForm } from "../handle-todo-form";
 import { useDispatch, useSelector } from "react-redux";
 import { getHandledTodo, getHandledTodoId } from "../../modules/ui/selectors";
 import { addTodoThunk, updateTodoThunk } from "../../modules/todos/actions";
