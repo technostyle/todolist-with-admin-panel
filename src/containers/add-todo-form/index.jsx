@@ -63,7 +63,7 @@ export const AddTodoForm = () => {
             disabled={!isFormValid || isTodolistLoading}
             onClick={onAddTodo}
           >
-            Add todo
+            Submit
           </button>
         </div>
       </div>
