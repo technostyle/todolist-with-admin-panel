@@ -23,7 +23,6 @@ export const LoginForm = ({ isLoading, onLogin, errorMessage }) => {
 
   return (
     <div className={commonCss.centralizedContainer}>
-      {/* <div className={css.closeButton} onClick={}> &#x2715; </div> */}
       <div className={css.formContainer}>
         <FormItem
           ref={loginInputRef}

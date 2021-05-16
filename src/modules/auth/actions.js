@@ -89,7 +89,7 @@ export const logoutThunk = () => (dispatch) => {
 
 // TODO: rename initialize?
 export const authentificate = () => (dispatch) => {
-  dispatch(setDeveloperName("gena"));
+  dispatch(setDeveloperName("danila"));
   dispatch(
     setBackendHost(`https://uxcandy.com/~shapoval/test-task-backend/v2/`)
   );

@@ -1,7 +1,7 @@
 import { createFormData } from "../utils/url";
 
 const defaultQueryParams = {
-  developer: "Gena",
+  developer: "Danila",
 };
 
 const errorHandler = async (res) => {

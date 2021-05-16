@@ -9,7 +9,7 @@ const notificationTypeClassNameMap = {
   failure: css.notificationFailure,
 };
 
-const Notification = ({ title, type, text }) => {
+const Notification = ({ type, text }) => {
   return (
     <div
       className={`

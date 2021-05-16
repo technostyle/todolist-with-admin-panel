@@ -18,10 +18,8 @@ const ToolBartElement = ({ value, onClick, sortDirection }) => {
       className={`${css.toolBarElement} ${active ? css.active : ""}`}
       onClick={onClick}
     >
-      {sortDirection === sortFieldDirections.ASC && <UpArrow size={"1.2em"} />}
-      {sortDirection === sortFieldDirections.DESC && (
-        <DownArrow size={"1.2em"} />
-      )}
+      {sortDirection === sortFieldDirections.ASC && <UpArrow />}
+      {sortDirection === sortFieldDirections.DESC && <DownArrow />}
       {value}
     </div>
   );

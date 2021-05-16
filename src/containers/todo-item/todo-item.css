@@ -1,13 +1,82 @@
 .todoItemContainer {
     display: flex;
-    flex-direction: column;
     border: 1px solid black;
     border-radius: 5px;
     margin-bottom: 10px;
-    width: 200px;
-    height: 150px;
+    height: 400px;
+    position: relative;
 }
 
 .todoItemTextElement {
+    display: flex;
+    justify-content: center;
     overflow: hidden;
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+.todoItemTextElementLabel {
+    display: inline-block;
+    min-width: 40px;
+    color: grey;
+}
+
+.todoItemTextElementValue {
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 500px;
+    display: block;
+}
+
+.todoItemContentCommon {
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.todoCheckboxContainer {
+    composes: todoItemContentCommon;
+    left: 0;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todoInfoContainer {
+    composes: todoItemContentCommon;
+    right: 0;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.todoCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4em;
+    height: 4em;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: 1px solid gray;
+    box-shadow: none;
+    line-height: 1em;
+    background: #f9f9f9;
+}
+
+input[type='checkbox']:checked:after {
+    content: '✔';
+    color: lightgreen;
+    font-size: 4em;
+}
+
+input[type='checkbox']:disabled {
+    cursor: not-allowed;
 }

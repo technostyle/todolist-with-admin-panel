@@ -7,7 +7,8 @@ import { setHandledTodoInfoThunk } from "../../modules/ui/actions";
 
 const TodoItemTextElement = ({ label, value }) => (
   <div className={css.todoItemTextElement}>
-    {label}: {value}
+    <span className={css.todoItemTextElementLabel}>{label}</span>
+    <span className={css.todoItemTextElementValue}>{value}</span>
   </div>
 );
 
@@ -31,19 +32,21 @@ export const TodoItem = ({ todoItem, canEdit }) => {
     `}
       onClick={canEdit ? onClick : undefined}
     >
-      {canEdit ? (
+      <div className={css.todoCheckboxContainer}>
         <input
+          className={css.todoCheckbox}
           type="checkbox"
           ref={checkboxRef}
           checked={isComplete}
           onChange={onToggleComplete}
+          disabled={!canEdit}
         />
-      ) : (
-        <div>isComplete: {isComplete?.toString()}</div>
-      )}
-      <TodoItemTextElement label={"userName"} value={userName} />
-      <TodoItemTextElement label={"email"} value={email} />
-      <TodoItemTextElement label={"text"} value={text} />
+      </div>
+      <div className={css.todoInfoContainer}>
+        <TodoItemTextElement label={"name"} value={userName} />
+        <TodoItemTextElement label={"email"} value={email} />
+        <TodoItemTextElement label={"text"} value={text} />
+      </div>
     </div>
   );
 };

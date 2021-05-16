@@ -14,6 +14,16 @@ import commonCss from "styles/common.css";
 import css from "./pagination.css";
 import { LeftArrow, RightArrow } from "../../components/elements";
 
+const PaginationButton = ({ children, onClick, disabled }) => (
+  <button
+    className={css.paginationButton}
+    disabled={disabled}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
+
 export const Pagination = () => {
   const currentPage = useSelector(getCurrentPage);
   const isLoading = useSelector(getIsTodosLoading);
@@ -27,21 +37,19 @@ export const Pagination = () => {
   return (
     <div className={commonCss.centralizedContainer}>
       <div className={css.paginationContainer}>
-        <button
-          className={css.paginationButton}
-          disabled={isLoading || isMinPage}
+        <PaginationButton
           onClick={onPageDecrement}
+          disabled={isLoading || isMinPage}
         >
           <LeftArrow />
-        </button>
+        </PaginationButton>
         <div className={css.paginationCounter}>{currentPage}</div>
-        <button
-          className={css.paginationButton}
-          disabled={isLoading || isMaxPage}
+        <PaginationButton
           onClick={onPageIncrement}
+          disabled={isLoading || isMaxPage}
         >
           <RightArrow />
-        </button>
+        </PaginationButton>
       </div>
     </div>
   );
