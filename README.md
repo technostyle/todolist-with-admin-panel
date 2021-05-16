@@ -1,3 +1,7 @@
+# Environment
+https://technostyle.github.io/todolist-with-admin-panel/
+
+# Task
 Необходимо создать приложение-задачник.
 Документацию по back-end можно найти тут:
 
