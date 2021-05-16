@@ -2,8 +2,6 @@ import { createSelector } from "reselect";
 import { getTotalTodosCount, getFetchParams } from "../todos/selectors";
 import { equal, equals } from "../../utils";
 
-// const paginationSelector = (state) => state.pagination;
-
 export const getCurrentPage = createSelector(
   getFetchParams,
   (fetchParams) => fetchParams?.page || 1

@@ -19,7 +19,6 @@ class TodolistProvider extends DataProvider {
         developer: this.developerName,
       });
     } catch (e) {
-      console.error(e);
       throw e;
     }
   };

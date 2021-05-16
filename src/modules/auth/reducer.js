@@ -15,7 +15,6 @@ const initialState = {
   token: null,
 };
 
-// TODO: desturcture action
 export const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_DEVELOPER_NAME:

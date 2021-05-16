@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { prop } from "utils";
 
-const authSelector = (state) => state.auth;
+const authSelector = prop("auth");
 
 export const getDeveloperName = createSelector(
   authSelector,
@@ -17,12 +17,9 @@ export const getIsLoggedIn = createSelector(
 
 export const getLoginErrorMessage = createSelector(
   authSelector,
-  (auth) => auth?.loginErrorMessage || ""
+  prop("loginErrorMessage", "")
 );
 
-export const getIsAuthLoading = createSelector(
-  authSelector,
-  (auth) => auth?.isLoading
-);
+export const getIsAuthLoading = createSelector(authSelector, prop("isLoading"));
 
 export const getAuthToken = createSelector(authSelector, prop("token"));

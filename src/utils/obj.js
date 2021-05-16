@@ -13,13 +13,11 @@ export const filterEmptyValues = (obj) => {
   return res;
 };
 
-// TODO: support array or dotted string?
-export const prop = (key) => (obj) => (obj && obj?.[key]) || undefined;
+export const prop = (key, defaultValue) => (obj) =>
+  (obj && obj?.[key]) || defaultValue;
 export const equals = (to) => (something) => something === to;
 export const equal = (a, b) => a === b;
-// export const equals = (param) => (to) => to === param;
 
-// TODO: make common?
 export const memoize = (foo) => {
   let prevParams = [];
   let prevResult = null;
@@ -34,15 +32,6 @@ export const memoize = (foo) => {
     return prevResult;
   };
 };
-
-// const getUniqueIdFabric = () => {
-//   const counters = { common: 0 };
-//   return (prefix ='common') => {
-//     if {counters[prefix]} return counters.prefix++
-//   };
-// };
-//
-// export const getUniqueId = getUniqueIdFabric();
 
 export const getUniqueId = (() => {
   let counter = 0;

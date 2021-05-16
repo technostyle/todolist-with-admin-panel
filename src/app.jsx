@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { TodoList } from "./containers/todolist";
 import { fetchTodosThunk } from "modules/todos/actions";
-import { authentificate } from "modules/auth/actions";
+import { initialize } from "modules/auth/actions";
 import { useDispatch } from "react-redux";
 import { ToolBar } from "./containers/toolbar";
 import { Pagination } from "./containers/pagination";
@@ -12,7 +12,7 @@ import { NotificationContainer } from "./components/notification";
 export const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(authentificate());
+    dispatch(initialize());
     dispatch(fetchTodosThunk());
   }, []);
   return (

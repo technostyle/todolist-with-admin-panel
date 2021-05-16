@@ -1,20 +1,17 @@
 import { createSelector } from "reselect";
-import { filterEmptyValues } from "utils";
+import { filterEmptyValues, prop } from "utils";
 
 const todosSelector = (state) => state.todos;
 
-export const getTodos = createSelector(
-  todosSelector,
-  (state) => state?.todos || []
-);
+export const getTodos = createSelector(todosSelector, prop("todos", []));
 
 export const getIsTodosLoading = createSelector(
   todosSelector,
-  (state) => state?.isLoading
+  prop("isLoaing")
 );
 export const getTotalTodosCount = createSelector(
   todosSelector,
-  (todos) => todos?.totalTodosCount || 0
+  prop("totalTodosCount", 0)
 );
 
 export const getFetchParams = createSelector(

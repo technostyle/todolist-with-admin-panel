@@ -54,6 +54,7 @@ export const setFetchParamsThunk = ({ sortField, sortDirection, page }) => (
   dispatch(setFetchParams({ sortField, sortDirection, page }));
 };
 
+// TODO: rename
 export const updateFetchParamsThunk = (update) => (dispatch, getState) => {
   const params = getFetchParams(getState());
   dispatch(setFetchParamsThunk({ ...params, ...update }));
@@ -107,7 +108,6 @@ export const addTodoThunk = (todoItem, onSuccess) => async (
     onSuccess();
     dispatch(fetchTodosThunk());
   } catch (e) {
-    console.error(e);
     dispatch(
       addNotificationThunk({
         text: formatErrorMessageObj(e?.message) || "Creating task error",
@@ -156,6 +156,8 @@ export const updateSortParamsThunk = ({
   sortField,
   sortDirection,
 }) => (dispatch) => {
+  // let newFetchParams = {}
+
   if (sortField === clickedSortField) {
     dispatch(
       updateFetchParamsThunk({
