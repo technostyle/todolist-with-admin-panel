@@ -12,6 +12,10 @@
     border: solid 1px;
 }
 
+.headerTitle {
+    margin-left: 10px;
+}
+
 button:global {
     border: solid 1px;
     background-color: white;

@@ -49,8 +49,9 @@ export const AddTodoForm = ({ onSubmit, initialValues, editMode }) => {
           inputElType={"textarea"}
         />
 
-        <div className={css.addTodoButtonContainer}>
+        <div className={css.submitButtonContainer}>
           <button
+            className={css.submitButton}
             disabled={!isFormValid || isTodolistLoading}
             onClick={handleSubmit}
           >

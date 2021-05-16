@@ -21,7 +21,7 @@ export const App = () => {
     <div className={css.appContainer}>
       <NotificationContainer />
       <header className={css.header}>
-        <h1>Todo app </h1>
+        <h1 className={css.headerTitle}>Todo app </h1>
         <LoginPanel />
       </header>
       <br />

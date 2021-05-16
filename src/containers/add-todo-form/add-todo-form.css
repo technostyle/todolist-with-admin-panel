@@ -15,8 +15,12 @@
     width: 200px;
 }
 
-.addTodoButtonContainer {
+.submitButtonContainer {
     margin-top: 10px;
     display: flex;
     justify-content: center;
+}
+
+.submitButton {
+    padding: 5px;
 }

@@ -20,4 +20,5 @@
 .paginationButton {
     composes: paginationElement;
     padding-bottom: 10px;
+    outline: none;
 }
