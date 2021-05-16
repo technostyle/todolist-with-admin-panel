@@ -62,6 +62,7 @@ export const loginThunk = (creds) => async (dispatch, getState) => {
       })
     );
   } catch (e) {
+    console.error(e);
     setSessionTokenToStorage(null);
     dispatch(
       setLoginStatus({

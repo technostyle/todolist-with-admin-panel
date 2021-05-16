@@ -1,18 +1,20 @@
 import { memoize } from "../utils";
 import { DataProvider } from "./data-provider";
 
-const noop = () => {};
 class LoginProvider extends DataProvider {
-  get = noop;
-  post = noop;
   constructor(dispatch, getState) {
     super(dispatch, getState, "LoginProvider");
   }
 
   postCreds = async (creds) => {
     try {
-      return await this.httpService.post(`${this.host}login`, creds);
+      return await this.httpPost({
+        url: `${this.host}login`,
+        params: creds,
+        queryParams: this.defaultQueryParams,
+      });
     } catch (e) {
+      console.error(e);
       throw e;
     }
   };

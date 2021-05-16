@@ -1,8 +1,4 @@
-import { createFormData } from "../utils/url";
-
-const defaultQueryParams = {
-  developer: "Danila",
-};
+import { createFormData } from "utils";
 
 const errorHandler = async (res) => {
   if (!res.ok) {
@@ -17,12 +13,12 @@ const parseResponse = async (res) => {
   if (parsedRes?.status === "ok") {
     return parsedRes.message;
   } else {
-    throw parsedRes.messagee || parsedRes;
+    throw parsedRes.message || parsedRes;
   }
 };
 
 const createQueryUrl = (url, params) => {
-  if (Object.keys(params).length === 0) {
+  if (!params || Object.keys(params).length === 0) {
     return url;
   }
 
@@ -39,7 +35,7 @@ const createQueryUrl = (url, params) => {
 };
 
 export class HttpService {
-  get = async (url, params) => {
+  httpGet = async (url, params) => {
     const properUrl = params ? createQueryUrl(url, params) : url;
     return await fetch(properUrl, {
       method: "GET",
@@ -55,8 +51,8 @@ export class HttpService {
       });
   };
 
-  post = (url, params) => {
-    return fetch(createQueryUrl(url, defaultQueryParams), {
+  httpPost = ({ url, params, queryParams }) => {
+    return fetch(createQueryUrl(url, queryParams), {
       method: "POST",
       body: createFormData(params),
       mode: "cors",
@@ -68,5 +64,3 @@ export class HttpService {
       });
   };
 }
-
-export const httpService = new HttpService();

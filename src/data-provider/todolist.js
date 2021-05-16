@@ -14,9 +14,9 @@ class TodolistProvider extends DataProvider {
 
   fetchTodos = async (params) => {
     try {
-      return await this.httpService.get(this.host, {
+      return await this.httpGet(this.host, {
         ...params,
-        developer: this.developerName,
+        ...this.defaultQueryParams,
       });
     } catch (e) {
       throw e;
@@ -25,7 +25,11 @@ class TodolistProvider extends DataProvider {
 
   postTodo = async (todoItem) => {
     try {
-      await this.httpService.post(`${this.host}create`, todoItem);
+      await this.httpPost({
+        url: `${this.host}create`,
+        params: todoItem,
+        queryParams: this.defaultQueryParams,
+      });
     } catch (e) {
       throw e;
     }
@@ -42,13 +46,14 @@ class TodolistProvider extends DataProvider {
       throw new Error("nothing to update");
     }
     try {
-      await this.httpService.post(
-        `${this.host}edit/:${id}`,
-        filterEmptyValues({
+      await this.httpPost({
+        url: `${this.host}edit/:${id}`,
+        params: filterEmptyValues({
           text,
           status: getUpdateTodoStatus(text, isComplete),
-        })
-      );
+        }),
+        queryParams: this.defaultQueryParams,
+      });
     } catch (e) {
       throw e;
     }
