@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /*z-index: 1;*/
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 .header {
@@ -21,7 +21,6 @@ button:global {
     border: solid 1px;
     background-color: white;
     border-radius: 5px;
-    /*padding: 5px 5px;*/
 }
 
 button:hover:global {

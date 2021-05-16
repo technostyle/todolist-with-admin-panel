@@ -4,6 +4,10 @@
     width: 200px;
 }
 
+.toolBarElementDisabled {
+    color: gray;
+}
+
 .toolBarElement {
     flex-grow: 1;
     display: flex;
