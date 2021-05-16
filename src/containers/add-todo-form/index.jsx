@@ -1,36 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodoThunk } from "modules/todos/actions";
+import { useSelector } from "react-redux";
 import { getIsTodosLoading } from "modules/todos/selectors";
 import { FormItem } from "../../components/form/form-item";
 
 import commonCss from "styles/common.css";
 import css from "./add-todo-form.css";
 
-export const AddTodoForm = () => {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [text, setText] = useState("");
-
-  const dispatch = useDispatch();
+export const AddTodoForm = ({ onSubmit, initialValues, editMode }) => {
+  console.log({ editMode, initialValues });
+  const { text: initialText, email: initialEmail, userName: initialUserName } =
+    initialValues || {};
+  const [userName, setUserName] = useState(initialUserName || "");
+  const [email, setEmail] = useState(initialEmail || "");
+  const [text, setText] = useState(initialText || "");
 
   const isTodolistLoading = useSelector(getIsTodosLoading);
   const onUserNameChange = (event) => setUserName(event.target.value);
   const onEmailChange = (event) => setEmail(event.target.value);
   const onTextChange = (event) => setText(event.target.value);
-  const onAddTodo = () => {
-    dispatch(
-      addTodoThunk({
-        userName,
-        email,
-        text,
-        isComplete: false,
-      })
-    );
-
-    setUserName("");
-    setEmail("");
-    setText("");
+  const handleSubmit = () => {
+    onSubmit({ userName, email, text });
   };
 
   const isFormValid = userName && email && text;
@@ -43,12 +32,14 @@ export const AddTodoForm = () => {
           label={"user name"}
           value={userName}
           onChange={onUserNameChange}
+          disabled={editMode}
         />
         <FormItem
           labelId={"#email-form-item"}
           label={"e-mail"}
           value={email}
           onChange={onEmailChange}
+          disabled={editMode}
         />
         <FormItem
           labelId={"#text-form-item"}
@@ -61,7 +52,7 @@ export const AddTodoForm = () => {
         <div className={css.addTodoButtonContainer}>
           <button
             disabled={!isFormValid || isTodolistLoading}
-            onClick={onAddTodo}
+            onClick={handleSubmit}
           >
             Submit
           </button>

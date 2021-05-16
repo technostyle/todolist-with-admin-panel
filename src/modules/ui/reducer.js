@@ -1,6 +1,11 @@
-import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from "./actions";
+import {
+  ADD_NOTIFICATION,
+  REMOVE_NOTIFICATION,
+  SET_HANDLED_TODO_INFO,
+} from "./actions";
 const initialState = {
   notifications: [],
+  handledTodoInfo: null,
 };
 
 export const uiReducer = (state = initialState, { type, payload }) => {
@@ -9,6 +14,8 @@ export const uiReducer = (state = initialState, { type, payload }) => {
       return addNotificationReducer(state, payload);
     case REMOVE_NOTIFICATION:
       return removeNotificationReducer(state, payload);
+    case SET_HANDLED_TODO_INFO:
+      return setHandledTodoInfoReducer(state, payload);
     default:
       return state;
   }
@@ -16,16 +23,22 @@ export const uiReducer = (state = initialState, { type, payload }) => {
 
 function addNotificationReducer(state, payload) {
   console.log("addNotificationReducer", { payload });
-  const newState = {
+  return {
     ...state,
     notifications: [...state.notifications, payload],
   };
-  return newState;
 }
 
 function removeNotificationReducer(state, payload) {
   return {
     ...state,
     notifications: state.notifications.filter(({ id }) => id !== payload),
+  };
+}
+
+function setHandledTodoInfoReducer(state, payload) {
+  return {
+    ...state,
+    handledTodoInfo: payload,
   };
 }

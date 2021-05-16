@@ -8,7 +8,7 @@ import {
 import { getFetchParams } from "modules/todos/selectors";
 import { getAuthToken } from "../auth/selectors";
 import { filterEmptyValues, formatErrorMessageObj } from "../../utils";
-import { addNotificationThunk } from "../ui/actions";
+import { addNotificationThunk, setHandledTodoInfoThunk } from "../ui/actions";
 import { sortFieldDirections } from "../toolbar/constants";
 
 export const SET_TODOS = "SET_TODOS";
@@ -100,6 +100,8 @@ export const addTodoThunk = (todoItem) => async (dispatch, getState) => {
         type: "success",
       })
     );
+    dispatch(setHandledTodoInfoThunk(null));
+    dispatch(fetchTodosThunk());
   } catch (e) {
     console.error(e);
     dispatch(
@@ -109,7 +111,6 @@ export const addTodoThunk = (todoItem) => async (dispatch, getState) => {
       })
     );
   }
-  dispatch(fetchTodosThunk());
 };
 
 export const updateTodoThunk = ({ id, text, isComplete }) => async (
@@ -121,15 +122,20 @@ export const updateTodoThunk = ({ id, text, isComplete }) => async (
   try {
     const todoListProvider = todoListProviderFabric(dispatch, getState);
     await todoListProvider.editTodo(token, { id, text, isComplete });
+    dispatch(setHandledTodoInfoThunk(null));
     dispatch(fetchTodosThunk());
   } catch (e) {
+    const serverMessage = formatErrorMessageObj(e?.message);
+    if (!serverMessage) {
+      console.error(e);
+    }
     dispatch(
       addNotificationThunk({
-        text:
-          formatErrorMessageObj(e?.message) || "Error occurred while editing",
+        text: serverMessage || "Error occurred while editing",
         type: "failure",
       })
     );
+    // dispatch(setHandledTodoInfoThunk(null));
   }
   dispatch(setTodosLoading(false));
 };

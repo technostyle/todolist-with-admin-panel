@@ -2,7 +2,7 @@ import React from "react";
 import css from "./form-item.css";
 
 export const FormItem = React.forwardRef(
-  ({ type, label, value, onChange, labelId, inputElType }, ref) => {
+  ({ type, label, value, onChange, labelId, inputElType, disabled }, ref) => {
     const InputElement = ["input", "textarea"].includes(inputElType)
       ? inputElType
       : "input";
@@ -11,6 +11,8 @@ export const FormItem = React.forwardRef(
         <label htmlFor={labelId}>{label}</label>
         <InputElement
           ref={ref}
+          autoComplete={"off"}
+          disabled={disabled}
           type={type}
           className={css.inputElement}
           id={labelId}

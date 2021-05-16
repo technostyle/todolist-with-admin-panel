@@ -30,7 +30,7 @@ export const LoginPanel = () => {
       <button onClick={handleAuthButton}>{buttonText}</button>
       {
         <Modal
-          title={'Login form'}
+          title={"Login form"}
           isOpen={isLoginFormOpen}
           onClose={() => {
             setIsLoginFormOpen(false);

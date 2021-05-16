@@ -13,7 +13,13 @@ const rootReducer = combineReducers({
 });
 
 const logger = ({ getState }) => (next) => (action) => {
-  console.info(`%c${action.type}`, "font-style: bold; color: blue", getState());
+  const { type, payload } = action;
+  console.info(
+    `%c${type}`,
+    "font-style: bold; color: blue",
+    { payload },
+    getState()
+  );
   return next(action);
 };
 

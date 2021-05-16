@@ -9,6 +9,7 @@ import { Pagination } from "./containers/pagination";
 import { LoginPanel } from "./containers/login-panel";
 import css from "./app.css";
 import { NotificationContainer } from "./components/notification";
+import { HandledTodoContainer } from "./containers/handled-todo-container";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -24,9 +25,10 @@ export const App = () => {
           <h1>Todo app </h1>
           <LoginPanel />
         </header>
-
         <br />
-        <AddTodoForm />
+
+        <HandledTodoContainer />
+        {/* <AddTodoForm /> */}
         <br />
         <ToolBar className={css.appContainer} />
         <br />

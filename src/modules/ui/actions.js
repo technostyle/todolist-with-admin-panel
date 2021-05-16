@@ -2,6 +2,7 @@ import { getUniqueId } from "utils";
 
 export const ADD_NOTIFICATION = "ADD_NOTIFICATION";
 export const REMOVE_NOTIFICATION = "REMOVE_NOTIFICATION";
+export const SET_HANDLED_TODO_INFO = "SET_HANDLED_TODO_INFO";
 
 const addNotification = (data) => ({
   type: ADD_NOTIFICATION,
@@ -11,6 +12,11 @@ const addNotification = (data) => ({
 const removeNotification = (id) => ({
   type: REMOVE_NOTIFICATION,
   payload: id,
+});
+
+const setHandledTodoInfo = (info) => ({
+  type: SET_HANDLED_TODO_INFO,
+  payload: info,
 });
 
 export const addNotificationThunk = ({
@@ -25,4 +31,8 @@ export const addNotificationThunk = ({
     dispatch(removeNotification(id));
     clearTimeout(timeout);
   }, duration);
+};
+
+export const setHandledTodoInfoThunk = (id) => (dispatch) => {
+  dispatch(setHandledTodoInfo({ id: id || null }));
 };

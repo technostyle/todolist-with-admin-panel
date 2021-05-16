@@ -1,9 +1,9 @@
 .notificationsContainer {
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: 0;
     width: 20%;
-    height: 100%;
+    /*height: 100%;*/
     display: flex;
     flex-direction: column-reverse;
 }
@@ -17,6 +17,7 @@
     width: 200px;
     margin-bottom: 10px;
     border: 1px solid;
+    z-index: 3;
     /*color: black;*/
 }
 
