@@ -59,9 +59,13 @@ export const updateFetchParamsThunk = (update) => (dispatch, getState) => {
   dispatch(setFetchParamsThunk({ ...params, ...update }));
 };
 
-export const fetchTodosThunk = () => async (dispatch, getState) => {
+export const fetchTodosThunk = (config) => async (dispatch, getState) => {
+  const { paramsToMerge, onSuccess, onError } = config || {};
   dispatch(setTodosLoading(true));
-  const params = getFetchParams(getState());
+  const currentParams = getFetchParams(getState());
+  const params = paramsToMerge
+    ? { ...currentParams, ...paramsToMerge }
+    : currentParams;
   const todoListProvider = todoListProviderFabric(dispatch, getState);
   try {
     const rawResponse = await todoListProvider.fetchTodos(
@@ -70,6 +74,7 @@ export const fetchTodosThunk = () => async (dispatch, getState) => {
     const { todos, totalTodosCounter } = mapTodoListToClient(rawResponse);
     dispatch(setTodos(todos.map(mapTodoItemToClient)));
     dispatch(setTotalTodosCount(totalTodosCounter));
+    onSuccess && onSuccess();
   } catch (e) {
     dispatch(
       addNotificationThunk({
@@ -77,6 +82,7 @@ export const fetchTodosThunk = () => async (dispatch, getState) => {
         type: "failure",
       })
     );
+    onError && onError();
   }
 
   dispatch(setTodosLoading(false));
@@ -106,7 +112,6 @@ export const addTodoThunk = (todoItem) => async (dispatch, getState) => {
   dispatch(fetchTodosThunk());
 };
 
-
 export const updateTodoThunk = ({ id, text, isComplete }) => async (
   dispatch,
   getState
@@ -129,9 +134,11 @@ export const updateTodoThunk = ({ id, text, isComplete }) => async (
   dispatch(setTodosLoading(false));
 };
 
-export const updateSortParamsThunk = ({ clickedSortField, sortField, sortDirection }) => (
-  dispatch
-) => {
+export const updateSortParamsThunk = ({
+  clickedSortField,
+  sortField,
+  sortDirection,
+}) => (dispatch) => {
   if (sortField === clickedSortField) {
     dispatch(
       updateFetchParamsThunk({

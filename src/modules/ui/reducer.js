@@ -20,7 +20,6 @@ function addNotificationReducer(state, payload) {
     ...state,
     notifications: [...state.notifications, payload],
   };
-  console.warn({ newState });
   return newState;
 }
 

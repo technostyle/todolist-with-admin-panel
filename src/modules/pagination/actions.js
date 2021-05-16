@@ -24,12 +24,15 @@ export const decrementPageThunk = () => (dispatch, getState) => {
   const state = getState();
   const currentPage = getCurrentPage(state);
 
-  if (currentPage === 0) return;
+  if (currentPage === 1) return;
   const newPage = currentPage - 1;
   // TODO filters reducer
 
   dispatch(updateFetchParamsThunk({ page: newPage }));
-  dispatch(fetchTodosThunk());
-
-  dispatch(setPage(newPage));
+  dispatch(
+    fetchTodosThunk({
+      paramsToMerge: { page: newPage },
+      onSuccess: () => dispatch(setPage(newPage)),
+    })
+  );
 };

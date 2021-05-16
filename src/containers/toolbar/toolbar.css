@@ -1,18 +1,24 @@
 .toolBarContainer {
     display: flex;
+    justify-content: space-evenly;
     width: 200px;
 }
 
 .toolBarElement {
     flex-grow: 1;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
 }
 
-.toolBarElementDescSort::before {
-    content: ' \2191';
+.toolBarElement:nth-child(1) {
+    margin-left: 0;
 }
 
-.toolBarElementAscSort::before {
-    content: ' \2193';
+.active {
+    border: solid 1px;
+    border-radius: 5px;
 }

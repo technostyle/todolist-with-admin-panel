@@ -42,7 +42,7 @@ export const LoginForm = ({ isLoading, onLogin, errorMessage }) => {
         />
 
         {errorMessage && <div className={css.errorMessage}>{errorMessage}</div>}
-        <div className={commonCss.centralizedContainer}>
+        <div className={css.loginButtonContainer}>
           <button disabled={!isFormValid || isLoading} onClick={loginHandler}>
             Login
           </button>

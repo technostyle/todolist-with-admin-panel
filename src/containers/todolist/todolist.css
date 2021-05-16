@@ -1,5 +1,19 @@
 .todolistContainer {
+    min-height: 200px;
+    height: 200px;
+    overflow: auto;
+}
+
+.loaderContainer {
+    composes: todolistContainer;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.itemsContainer {
+    composes: todolistContainer;
+    display: flex;
+    justify-content: space-evenly;
     align-items: center;
 }

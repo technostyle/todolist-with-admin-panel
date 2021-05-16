@@ -4,13 +4,20 @@ import {
   decrementPageThunk,
   incrementPageThunk,
 } from "modules/pagination/actions";
-import { getCurrentPage } from "modules/pagination/selectors";
+import {
+  getCurrentPage,
+  getIsMaxPage,
+  getIsMinPage,
+} from "modules/pagination/selectors";
 import { getIsTodosLoading } from "modules/todos/selectors";
 import commonCss from "styles/common.css";
+import css from "./pagination.css";
 
 export const Pagination = () => {
   const currentPage = useSelector(getCurrentPage);
   const isLoading = useSelector(getIsTodosLoading);
+  const isMinPage = useSelector(getIsMinPage);
+  const isMaxPage = useSelector(getIsMaxPage);
   const dispatch = useDispatch();
 
   const onPageDecrement = () => dispatch(decrementPageThunk());
@@ -18,21 +25,21 @@ export const Pagination = () => {
 
   return (
     <div className={commonCss.centralizedContainer}>
-      <div>
+      <div className={css.paginationContainer}>
         <button
-          className={commonCss.button}
-          disabled={isLoading}
+          className={css.paginationButton}
+          disabled={isLoading || isMinPage}
           onClick={onPageDecrement}
         >
-          prev
+          &#8592;
         </button>
-        <span>{currentPage}</span>
+        <div className={css.paginationCounter}>{currentPage}</div>
         <button
-          className={commonCss.button}
-          disabled={isLoading}
+          className={css.paginationButton}
+          disabled={isLoading || isMaxPage}
           onClick={onPageIncrement}
         >
-          next
+          <span>&#8594;</span>
         </button>
       </div>
     </div>

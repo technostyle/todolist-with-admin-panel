@@ -10,16 +10,20 @@
 }
 
 button:global {
-    margin-top: 10px;
-    /*outline: none;*/
     border: solid 1px;
     background-color: white;
     border-radius: 5px;
     padding: 5px 5px;
 }
 
+button:hover:global {
+    cursor: pointer;
+}
+
 button:disabled:global {
     background-color: white;
     color: gray;
     border: solid 1px gray;
+    cursor: not-allowed;
 }
+

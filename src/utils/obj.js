@@ -15,6 +15,8 @@ export const filterEmptyValues = (obj) => {
 
 // TODO: support array or dotted string?
 export const prop = (key) => (obj) => (obj && obj?.[key]) || undefined;
+export const equals = (to) => (something) => something === to;
+export const equal = (a, b) => a === b;
 // export const equals = (param) => (to) => to === param;
 
 // TODO: make common?

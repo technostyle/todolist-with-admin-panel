@@ -34,7 +34,6 @@ export const authReducer = (state = initialState, { type, payload }) => {
         token: payload.token || null,
       };
     case SET_IS_AUTH_LOADING:
-      console.warn("SET_IS_AUTH_LOADING", { state });
       return {
         ...state,
         isLoading: payload,

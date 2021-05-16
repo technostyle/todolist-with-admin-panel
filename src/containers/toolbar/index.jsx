@@ -10,15 +10,19 @@ import {
 import { updateSortParamsThunk } from "../../modules/todos/actions";
 
 const ToolBartElement = ({ value, onClick, sortDirection }) => {
+  const active = Boolean(sortDirection);
   let ArrowElement = null;
   if (sortDirection === sortFieldDirections.ASC) ArrowElement = <>&#8593;</>;
   if (sortDirection === sortFieldDirections.DESC) ArrowElement = <>&#8595;</>;
 
   return (
-    <span className={css.toolBarElement} onClick={onClick}>
+    <div
+      className={`${css.toolBarElement} ${active ? css.active : ""}`}
+      onClick={onClick}
+    >
       {ArrowElement}
       {value}
-    </span>
+    </div>
   );
 };
 
