@@ -12,6 +12,7 @@ import {
 import { getIsTodosLoading } from "modules/todos/selectors";
 import commonCss from "styles/common.css";
 import css from "./pagination.css";
+import { LeftArrow, RightArrow } from "../../components/elements";
 
 export const Pagination = () => {
   const currentPage = useSelector(getCurrentPage);
@@ -31,7 +32,7 @@ export const Pagination = () => {
           disabled={isLoading || isMinPage}
           onClick={onPageDecrement}
         >
-          &#8592;
+          <LeftArrow />
         </button>
         <div className={css.paginationCounter}>{currentPage}</div>
         <button
@@ -39,7 +40,7 @@ export const Pagination = () => {
           disabled={isLoading || isMaxPage}
           onClick={onPageIncrement}
         >
-          <span>&#8594;</span>
+          <RightArrow />
         </button>
       </div>
     </div>

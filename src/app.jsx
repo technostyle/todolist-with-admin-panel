@@ -18,24 +18,20 @@ export const App = () => {
     dispatch(fetchTodosThunk());
   }, []);
   return (
-    <>
-      <div className={css.appContainer}>
-        <NotificationContainer />
-        <header className={css.header}>
-          <h1>Todo app </h1>
-          <LoginPanel />
-        </header>
-        <br />
+    <div className={css.appContainer}>
+      <NotificationContainer />
+      <header className={css.header}>
+        <h1>Todo app </h1>
+        <LoginPanel />
+      </header>
+      <br />
 
-        <HandledTodoContainer />
-        {/* <AddTodoForm /> */}
-        <br />
-        <ToolBar className={css.appContainer} />
-        <br />
-        <TodoList className={css.appContainer} />
-        <br />
-        <Pagination className={css.appContainer} />
-      </div>
-    </>
+      <br />
+      <ToolBar className={css.appContainer} />
+      <br />
+      <TodoList className={css.appContainer} />
+      <br />
+      <Pagination className={css.appContainer} />
+    </div>
   );
 };

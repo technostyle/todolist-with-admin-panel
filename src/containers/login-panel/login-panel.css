@@ -5,3 +5,7 @@
     transform: translateY(-50%);
     box-sizing: border-box;
 }
+
+.loginButton {
+    padding: 5px;
+}

@@ -1,4 +1,7 @@
 .appContainer {
+    width: 80%;
+    position: relative;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,7 +16,7 @@ button:global {
     border: solid 1px;
     background-color: white;
     border-radius: 5px;
-    padding: 5px 5px;
+    /*padding: 5px 5px;*/
 }
 
 button:hover:global {

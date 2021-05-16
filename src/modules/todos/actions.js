@@ -88,7 +88,10 @@ export const fetchTodosThunk = (config) => async (dispatch, getState) => {
   dispatch(setTodosLoading(false));
 };
 
-export const addTodoThunk = (todoItem) => async (dispatch, getState) => {
+export const addTodoThunk = (todoItem, onSuccess) => async (
+  dispatch,
+  getState
+) => {
   const todoListProvider = todoListProviderFabric(dispatch, getState);
   try {
     await todoListProvider.postTodo(
@@ -101,6 +104,7 @@ export const addTodoThunk = (todoItem) => async (dispatch, getState) => {
       })
     );
     dispatch(setHandledTodoInfoThunk(null));
+    onSuccess();
     dispatch(fetchTodosThunk());
   } catch (e) {
     console.error(e);
@@ -113,7 +117,7 @@ export const addTodoThunk = (todoItem) => async (dispatch, getState) => {
   }
 };
 
-export const updateTodoThunk = ({ id, text, isComplete }) => async (
+export const updateTodoThunk = ({ id, text, isComplete }, onSuccess) => async (
   dispatch,
   getState
 ) => {
@@ -122,7 +126,14 @@ export const updateTodoThunk = ({ id, text, isComplete }) => async (
   try {
     const todoListProvider = todoListProviderFabric(dispatch, getState);
     await todoListProvider.editTodo(token, { id, text, isComplete });
+    dispatch(
+      addNotificationThunk({
+        text: "Task successfully updated",
+        type: "success",
+      })
+    );
     dispatch(setHandledTodoInfoThunk(null));
+    onSuccess();
     dispatch(fetchTodosThunk());
   } catch (e) {
     const serverMessage = formatErrorMessageObj(e?.message);

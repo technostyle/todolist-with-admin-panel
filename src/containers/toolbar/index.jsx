@@ -8,19 +8,18 @@ import {
   sortFieldDirections,
 } from "../../modules/toolbar/constants";
 import { updateSortParamsThunk } from "../../modules/todos/actions";
+import { HandledTodoContainer } from "../handled-todo-container";
+import { DownArrow, UpArrow } from "../../components/elements";
 
 const ToolBartElement = ({ value, onClick, sortDirection }) => {
   const active = Boolean(sortDirection);
-  let ArrowElement = null;
-  if (sortDirection === sortFieldDirections.ASC) ArrowElement = <>&#8593;</>;
-  if (sortDirection === sortFieldDirections.DESC) ArrowElement = <>&#8595;</>;
-
   return (
     <div
       className={`${css.toolBarElement} ${active ? css.active : ""}`}
       onClick={onClick}
     >
-      {ArrowElement}
+      {sortDirection === sortFieldDirections.ASC && <UpArrow />}
+      {sortDirection === sortFieldDirections.DESC && <DownArrow />}
       {value}
     </div>
   );
@@ -36,6 +35,7 @@ export const ToolBar = () => {
   };
   return (
     <div className={commonCss.centralizedContainer}>
+      <HandledTodoContainer />
       <div className={css.toolBarContainer}>
         <ToolBartElement
           value={sortFieldNames.NAME}

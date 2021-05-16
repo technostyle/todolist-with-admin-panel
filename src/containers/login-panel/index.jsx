@@ -27,7 +27,9 @@ export const LoginPanel = () => {
   const buttonText = isLoggedIn ? "Logout" : "Login";
   return (
     <div className={css.loginPanelContainer}>
-      <button onClick={handleAuthButton}>{buttonText}</button>
+      <button className={css.loginButton} onClick={handleAuthButton}>
+        {buttonText}
+      </button>
       {
         <Modal
           title={"Login form"}

@@ -1,0 +1,14 @@
+.handledTodoContainer {
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    left: 5px;
+}
+
+.addTodoButton {
+    border-radius: 50%;
+    font-size: 2em;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+}
