@@ -1,7 +1,8 @@
 .todolistContainer {
-    min-height: 320px;
-    height: 320px;
+    min-height: 360px;
+    height: 360px;
     overflow: auto;
+    margin-bottom: 10px;
 }
 
 .loaderContainer {
@@ -14,7 +15,6 @@
 .itemsContainer {
     composes: todolistContainer;
     display: flex;
-    /*justify-content: space-evenly;*/
-    /*align-items: stretch;*/
     flex-direction: column;
+    position: relative;
 }

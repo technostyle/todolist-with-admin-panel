@@ -15,7 +15,6 @@ const Notification = ({ type, text }) => {
       className={`
         ${css.notification} 
         ${notificationTypeClassNameMap[type]}
-        ${css.animation}
         `}
     >
       {text}

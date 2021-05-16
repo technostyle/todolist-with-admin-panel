@@ -69,6 +69,7 @@
     box-shadow: none;
     line-height: 1em;
     background: #f9f9f9;
+    cursor: pointer;
 }
 
 input[type='checkbox']:checked:after {

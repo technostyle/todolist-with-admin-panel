@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { AddTodoForm } from "./containers/handle-todo-form";
 import { TodoList } from "./containers/todolist";
 import { fetchTodosThunk } from "modules/todos/actions";
 import { authentificate } from "modules/auth/actions";
@@ -9,7 +8,6 @@ import { Pagination } from "./containers/pagination";
 import { LoginPanel } from "./containers/login-panel";
 import css from "./app.css";
 import { NotificationContainer } from "./components/notification";
-import { HandledTodoContainer } from "./containers/handled-todo-container";
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -19,19 +17,15 @@ export const App = () => {
   }, []);
   return (
     <div className={css.appContainer}>
-      <NotificationContainer />
       <header className={css.header}>
         <h1 className={css.headerTitle}>Todo app </h1>
         <LoginPanel />
       </header>
-      <br />
 
-      <br />
-      <ToolBar className={css.appContainer} />
-      <br />
-      <TodoList className={css.appContainer} />
-      <br />
-      <Pagination className={css.appContainer} />
+      <ToolBar />
+      <TodoList />
+      <Pagination />
+      <NotificationContainer />
     </div>
   );
 };
