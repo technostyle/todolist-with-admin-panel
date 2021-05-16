@@ -146,7 +146,6 @@ export const updateTodoThunk = ({ id, text, isComplete }, onSuccess) => async (
         type: "failure",
       })
     );
-    // dispatch(setHandledTodoInfoThunk(null));
   }
   dispatch(setTodosLoading(false));
 };
@@ -156,27 +155,30 @@ export const updateSortParamsThunk = ({
   sortField,
   sortDirection,
 }) => (dispatch) => {
-  // let newFetchParams = {}
+  let newFetchParams = {};
 
   if (sortField === clickedSortField) {
-    dispatch(
-      updateFetchParamsThunk({
-        sortDirection:
-          sortDirection === sortFieldDirections.ASC
-            ? sortFieldDirections.DESC
-            : sortFieldDirections.ASC,
-        page: 1,
-      })
-    );
+    newFetchParams = {
+      sortDirection:
+        sortDirection === sortFieldDirections.ASC
+          ? sortFieldDirections.DESC
+          : sortFieldDirections.ASC,
+      page: 1,
+    };
   } else {
-    dispatch(
-      updateFetchParamsThunk({
-        sortField: clickedSortField,
-        sortDirection: sortFieldDirections.ASC,
-        page: 1,
-      })
-    );
+    newFetchParams = {
+      sortField: clickedSortField,
+      sortDirection: sortFieldDirections.ASC,
+      page: 1,
+    };
   }
 
-  dispatch(fetchTodosThunk());
+  dispatch(
+    fetchTodosThunk({
+      paramsToMerge: newFetchParams,
+      onSuccess: () => {
+        dispatch(updateFetchParamsThunk(newFetchParams));
+      },
+    })
+  );
 };

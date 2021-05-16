@@ -27,12 +27,9 @@ export const getHandledTodo = createSelector(
 export const getHandledTodoText = createSelector(
   [getHandledTodoId, getTodos],
   (handledId, todos) => {
-    console.warn({ handledId });
     const handledTodo = todos?.find(({ id }) => {
-      console.info(id);
       return id === handledId;
     });
-    console.warn({ handledTodo });
     return handledTodo?.text || null;
   }
 );

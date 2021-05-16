@@ -7,7 +7,7 @@ export const getTodos = createSelector(todosSelector, prop("todos", []));
 
 export const getIsTodosLoading = createSelector(
   todosSelector,
-  prop("isLoaing")
+  prop("isLoading")
 );
 export const getTotalTodosCount = createSelector(
   todosSelector,

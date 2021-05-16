@@ -7,7 +7,6 @@ class LoginProvider extends DataProvider {
   post = noop;
   constructor(dispatch, getState) {
     super(dispatch, getState, "LoginProvider");
-    console.log(this.get);
   }
 
   postCreds = async (creds) => {

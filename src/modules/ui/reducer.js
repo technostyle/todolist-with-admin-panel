@@ -22,7 +22,6 @@ export const uiReducer = (state = initialState, { type, payload }) => {
 };
 
 function addNotificationReducer(state, payload) {
-  console.log("addNotificationReducer", { payload });
   return {
     ...state,
     notifications: [...state.notifications, payload],
